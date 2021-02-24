@@ -29,7 +29,7 @@ Route::get('/catalog/{cat?}/{subcat?}', function($cat = false, $subcat = false) 
             $catName = 'Украшения';
             break;
         case 'shoes':
-            $catName = 'Обувьhm h gh';
+            $catName = 'Обувь';
             break;
     }
 
