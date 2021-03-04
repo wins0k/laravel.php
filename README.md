@@ -2,6 +2,8 @@
 
 ## About Project
 
+I used php OOP5 on practical about two - three weeks. From 3 day I learned used OOP5 and mvc pattern. And this very cool.
+
 This project created at Laravel 8. This project learners me Laravel and Gits. For development, I used PhpStorm 2020.3.1. Local web-server - OpenServer 3.5.8 with Included PHP 8.
 
 ## Learning Laravel
