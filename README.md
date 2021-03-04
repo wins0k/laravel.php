@@ -6,7 +6,7 @@ This project created at Laravel 8. This project learners me Laravel and Gits. Fo
 
 ## Learning Laravel
 
-I used docs on russian language. [docs on russian](https://github.com/russsiq/laravel-docs-8.x-ru)
+I used docs translated russian language. [docs on russian](https://github.com/russsiq/laravel-docs-8.x-ru)
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
