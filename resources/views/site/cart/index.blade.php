@@ -20,65 +20,33 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                            @foreach($data['products'] as $product)
                             <tr>
-                                <td class="product-col">
-                                    <img src="/img/cart/1.jpg" alt="">
+                                <td class="product-col" product-id="{{ $product['id'] }}">
+                                    <img src="{{ $product['preview'] }}" alt="">
                                     <div class="pc-title">
-                                        <h4>Animal Print Dress</h4>
-                                        <p>1990 руб.</p>
+                                        <h4>{{ $product['title'] }}</h4>
+                                        <p><span>{{ $product['price'] }}</span> руб.</p>
                                     </div>
                                 </td>
                                 <td class="quy-col">
                                     <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
+                                        <div class="pro-qty" product-id="{{ $product['id'] }}">
+                                            <input type="text" value="{{ $product['quantity'] }}">
                                         </div>
                                     </div>
                                 </td>
                                 <td class="size-col"><h4>M</h4></td>
-                                <td class="total-col"><h4>1990 руб.</h4></td>
+                                <td class="total-col" product-id="{{ $product['id'] }}"><h4><span>{{ $product['total'] }}</span> руб.</h4></td>
                             </tr>
-                            <tr>
-                                <td class="product-col">
-                                    <img src="/img/cart/2.jpg" alt="">
-                                    <div class="pc-title">
-                                        <h4>Ruffle Pink Top</h4>
-                                        <p>1990 руб.</p>
-                                    </div>
-                                </td>
-                                <td class="quy-col">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="size-col"><h4>M</h4></td>
-                                <td class="total-col"><h4>1990 руб.</h4></td>
-                            </tr>
-                            <tr>
-                                <td class="product-col">
-                                    <img src="/img/cart/3.jpg" alt="">
-                                    <div class="pc-title">
-                                        <h4>Skinny Jeans</h4>
-                                        <p>1990 руб.</p>
-                                    </div>
-                                </td>
-                                <td class="quy-col">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="size-col"><h4>M</h4></td>
-                                <td class="total-col"><h4>1990 руб.</h4></td>
-                            </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
                     <div class="total-cost">
-                        <h6>Всего <span>5970 руб.</span></h6>
+                        <h6>Всего <span>{{ $data['total_price'] }}</span> руб.</h6>
                     </div>
                 </div>
             </div>
@@ -99,67 +67,24 @@
             <h2>Продолжить покупки</h2>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="product-item">
-                    <div class="pi-pic">
-                        <div class="tag-new">Новинка</div>
-                        <img src="/img/product/2.jpg" alt="">
-                        <div class="pi-links">
-                            <a href="#" class="add-card"><i class="flaticon-bag"></i><span>В корзину</span></a>
-                            <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+            @foreach($data['best_salling'] as $item)
+                <div class="col-lg-3 col-sm-6">
+                    <div class="product-item">
+                        <div class="pi-pic">
+                            @if ($item->is_new)<div class="tag-new">Новинка</div>@endif
+                            <img src="{{ $item->preview }}" alt="{{ $item->title }}">
+                            <div class="pi-links">
+                                <a href="{{ route('cart.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="add-card"><i class="flaticon-bag"></i><span>В корзину</span></a>
+                                <a href="{{ route('wish.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                            </div>
+                        </div>
+                        <div class="pi-text">
+                            <h6>{{ $item->price }} руб.</h6>
+                            <p>{{ $item->title }}</p>
                         </div>
                     </div>
-                    <div class="pi-text">
-                        <h6>1990 руб.</h6>
-                        <p>Black and White Stripes Dress</p>
-                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="product-item">
-                    <div class="pi-pic">
-                        <img src="/img/product/5.jpg" alt="">
-                        <div class="pi-links">
-                            <a href="#" class="add-card"><i class="flaticon-bag"></i><span>В корзину</span></a>
-                            <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                        </div>
-                    </div>
-                    <div class="pi-text">
-                        <h6>1990 руб.</h6>
-                        <p>Flamboyant Pink Top</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="product-item">
-                    <div class="pi-pic">
-                        <img src="/img/product/9.jpg" alt="">
-                        <div class="pi-links">
-                            <a href="#" class="add-card"><i class="flaticon-bag"></i><span>В корзину</span></a>
-                            <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                        </div>
-                    </div>
-                    <div class="pi-text">
-                        <h6>1990 руб.</h6>
-                        <p>Flamboyant Pink Top</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="product-item">
-                    <div class="pi-pic">
-                        <img src="/img/product/1.jpg" alt="">
-                        <div class="pi-links">
-                            <a href="#" class="add-card"><i class="flaticon-bag"></i><span>В корзину</span></a>
-                            <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                        </div>
-                    </div>
-                    <div class="pi-text">
-                        <h6>1990 руб.</h6>
-                        <p>Flamboyant Pink Top</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

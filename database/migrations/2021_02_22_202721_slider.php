@@ -18,6 +18,7 @@ class Slider extends Migration
             $table->string('title');
             $table->string('img');
             $table->text('description');
+            $table->text('link');
             $table->integer('is_new');
             $table->string('type');
             $table->integer('sort');

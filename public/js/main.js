@@ -192,13 +192,23 @@ $(window).on('load', function() {
 			var newVal = parseFloat(oldValue) + 1;
 		} else {
 			// Don't allow decrementing below zero
-			if (oldValue > 0) {
+			if (oldValue > 1) {
 				var newVal = parseFloat(oldValue) - 1;
 			} else {
-				newVal = 0;
+				newVal = 1;
 			}
 		}
 		$button.parent().find('input').val(newVal);
+        var $id = $(this).parent().attr('product-id');
+        var $count = $(this).parent().find('input').val();
+        var $price = $('.product-col[product-id='+$id+'] .pc-title span').text();
+        var $total = $price * $count;
+        $('.total-col[product-id='+$id+'] h4 span').text($total);
+        var AllTotal = 0;
+        $('table tbody tr').each(function() {
+            AllTotal += parseFloat($(this).find('.total-col h4 span').text());
+        });
+        $('.total-cost span').text(AllTotal);
 	});
 
 
@@ -220,6 +230,15 @@ $(window).on('load', function() {
 
 	$('.product-pic-zoom').zoom();
 
+
+	$('.add-card').click(function(e) {
+        e.preventDefault();
+	    var id = $(this).attr('data-id');
+	    $.get('/cart/add/' + id, {}, function (data) {
+	        $('.shopping-card span').html(data);
+	    });
+	    return false;
+	});
 
 
 })(jQuery);

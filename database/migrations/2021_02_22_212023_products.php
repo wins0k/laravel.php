@@ -21,8 +21,10 @@ class Products extends Migration
             $table->integer('price');
             $table->text('description');
             $table->text('options');
-            $table->integer('status');
-            $table->integer('is_new');
+            $table->integer('sales');
+            $table->integer('status')->nullable();
+            $table->integer('is_new')->nullable();
+            $table->integer('is_rec')->nullable();
         });
     }
 

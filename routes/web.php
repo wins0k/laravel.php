@@ -10,29 +10,15 @@ Route::get('/account', function () {
     return true;
 })->name('account');
 
-Route::get('/cart', function () {
-    return view('site.cart.index');
-})->name('cart');
+Route::get('/cart', [CartController::class, 'ProductsInCart'])->name('cart');
+
+Route::get('/cart/add/{id}', [CartController::class, 'AddProductToCart'])->name('cart.add');
+
+Route::get('/wish/add/{id}', function () {
+    return view('site.wish.index');
+})->name('wish.add');
 
 Route::get('/catalog/{cat?}/{subcat?}', function($cat = false, $subcat = false) {
 
-    $catName = 'Каталог';
-
-    switch ($cat) {
-        case 'woman':
-            $catName = 'Женская одежда';
-            break;
-        case 'man':
-            $catName = 'Мужская одежда';
-            break;
-        case 'jewerly':
-            $catName = 'Украшения';
-            break;
-        case 'shoes':
-            $catName = 'Обувь';
-            break;
-    }
-
-    echo $subcat;
     return view('site.category.index', compact('catName'));
 })->name('catalog');

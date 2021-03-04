@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ config('app.locale') }}">
 <head>
-    <title>@yield('title') | Divisima</title>
+    <title>@yield('title') | {{ config('app.name') }}</title>
     <meta charset="UTF-8">
     <meta name="description" content="Divisima">
     <meta name="keywords" content="divisima, eCommerce, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/favicon.ico" rel="shortcut icon"/>
+    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700" rel="stylesheet">
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/css/flaticon.css"/>
-    <link rel="stylesheet" href="/css/slicknav.min.css"/>
-    <link rel="stylesheet" href="/css/jquery-ui.min.css"/>
-    <link rel="stylesheet" href="/css/owl.carousel.min.css"/>
-    <link rel="stylesheet" href="/css/animate.css"/>
-    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -49,7 +49,7 @@
                         <div class="up-item">
                             <div class="shopping-card">
                                 <i class="flaticon-bag"></i>
-                                <span>0</span>
+                                <span>{{ $data['cart_count'] }}</span>
                             </div>
                             <a href="{{ route('cart') }}">Корзина</a>
                         </div>
@@ -61,23 +61,20 @@
     <nav class="main-navbar">
         <div class="container">
             <ul class="main-menu">
-                <li><a href="{{ route('index') }}/">Главная</a></li>
-                <li><a href="{{ route('catalog', ['category'=>'woman']) }}">Женское</a></li>
-                <li><a href="{{ route('catalog', ['category'=>'man']) }}">Мужское</a></li>
-                <li><a href="{{ route('catalog', ['category'=>'jewerly']) }}">Украшения
-                        <span class="new">Новинка</span>
-                    </a></li>
-                <li><a href="{{ route('catalog', ['category'=>'shoes']) }}">Обувь</a>
-                    <ul class="sub-menu">
-                        <li><a href="{{ route('catalog', ['category'=>'shoes']) }}/sneakers">Кроссовки</a></li>
-                        <li><a href="{{ route('catalog', ['category'=>'shoes']) }}/sandals">Сандали</a></li>
-                        <li><a href="{{ route('catalog', ['category'=>'shoes']) }}/formals">Официальная обувь</a></li>
-                        <li><a href="{{ route('catalog', ['category'=>'shoes']) }}/boots">Ботинки</a></li>
-                        <li><a href="{{ route('catalog', ['category'=>'shoes']) }}/flipflops">Шлепанцы</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Блог</a></li>
-                <li><a href="#">Контакты</a></li>
+                <li><a href="{{ route('index') }}">Главная</a></li>
+                @foreach($data['main_menu'] as $menu)
+                    <li><a href="{{ route('catalog') }}/{{ $menu->code }}">{{ $menu->title }}@if($menu->is_new)<span class="new">Новинка</span>@endif</a>
+                        @isset($menu->childs)
+                            <ul class="sub-menu">
+                                @foreach($menu->childs as $subMenu)
+                                    <li><a href="{{ route('catalog') }}/{{ $menu->code }}/{{ $subMenu->code }}">{{ $subMenu->title }}</a></li>
+                                @endforeach
+                            </ul>
+                        @endisset
+                    </li>
+                @endforeach
+                <li><a href="">Блог</a></li>
+                <li><a href="">Контакты</a></li>
             </ul>
         </div>
     </nav>
@@ -177,14 +174,14 @@
         </div>
     </div>
 </section>
-<script src="/js/jquery-3.2.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.slicknav.min.js"></script>
-<script src="/js/owl.carousel.min.js"></script>
-<script src="/js/jquery.nicescroll.min.js"></script>
-<script src="/js/jquery.zoom.min.js"></script>
-<script src="/js/jquery-ui.min.js"></script>
-<script src="/js/main.js"></script>
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
+<script src="{{ asset('js/jquery.zoom.min.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 
 </body>
 </html>
