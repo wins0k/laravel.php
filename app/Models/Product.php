@@ -21,23 +21,33 @@ class Product
     }
 
 
-    public static function GetProductsByIds($productsIds)
+    public static function GetProductsByIds($productsIds, $mode = false)
     {
-
         $res = DB::table('products')->where('status', 1)->whereIn('id', $productsIds)->get();
 
         $i = 0;
-        $quantity = session('products');
+        if ($mode == 'cart') {
+            $quantity = session('products');
+        }
         foreach ($res as $res) {
             $products[$i]['id'] = $res->id;
             $products[$i]['title'] = $res->title;
             $products[$i]['price'] = $res->price;
             $products[$i]['preview'] = $res->preview;
-            $products[$i]['quantity'] = $quantity[$res->id];
-            $products[$i]['total'] = $res->price * $quantity[$res->id];
+            if ($mode == 'cart') {
+                $products[$i]['quantity'] = $quantity[$res->id];
+                $products[$i]['total'] = $res->price * $quantity[$res->id];
+            }
             $i++;
         }
 
         return $products;
+    }
+
+    public static function GetProductById($id)
+    {
+        $res = DB::table('products')->where('status', 1)->where('id', $id)->get();
+
+        return $res[0];
     }
 }

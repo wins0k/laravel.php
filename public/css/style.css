@@ -71,6 +71,30 @@ ol {
 	margin: 0;
 }
 
+body {
+    position: relative;
+}
+
+.alerts {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 170px;
+    height: 780px;
+    overflow-y: hidden;
+    z-index: 2;
+}
+
+.alerts .alert-success {
+    color: #fff;
+    background-color: #009825;
+    border-color: #009825;
+}
+
+.alerts .alert-success .close:hover {
+    color: #fff;
+}
+
 /*---------------------
   Helper CSS
 -----------------------*/
@@ -365,10 +389,11 @@ ol {
 
 .user-panel {
     margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .user-panel .up-item {
-	display: inline-block;
 	font-size: 14px;
 }
 
@@ -380,10 +405,6 @@ ol {
 	font-size: 12px;
     font-weight: 500;
 	color: #000;
-}
-
-.user-panel .up-item:first-child {
-	margin-right: 29px;
 }
 
 .shopping-card {
@@ -1890,6 +1911,14 @@ ol {
 	color: #f51167;
 	cursor: pointer;
 }
+
+.wish-actions a {
+    color: #000;
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+
 
 /* ----------------
   Checkout Page

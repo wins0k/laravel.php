@@ -17,11 +17,12 @@
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
+<div class="alerts"></div>
 <div id="preloder">
     <div class="loader"></div>
 </div>
@@ -44,12 +45,22 @@
                     <div class="user-panel">
                         <div class="up-item">
                             <i class="flaticon-profile"></i>
-                            <a href="{{ route('account') }}">Войти / Создать аккаунт</a>
+                            <a href="{{ route('account') }}">Аккаунт</a>
                         </div>
                         <div class="up-item">
                             <div class="shopping-card">
-                                <i class="flaticon-bag"></i>
-                                <span>{{ $data['cart_count'] }}</span>
+                                <a href="{{ route('wish') }}" title="Желания">
+                                    <i class="flaticon-heart"></i>
+                                </a>
+                            </div>
+                            <a href="{{ route('wish') }}">Желания</a>
+                        </div>
+                        <div class="up-item">
+                            <div class="shopping-card">
+                                <a href="{{ route('cart') }}" title="Корзина">
+                                    <i class="flaticon-bag"></i>
+                                    <span>{{ $data['cart_count'] }}</span>
+                                </a>
                             </div>
                             <a href="{{ route('cart') }}">Корзина</a>
                         </div>

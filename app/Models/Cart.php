@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Request;
-
 class Cart
 {
     public static function AddProduct($id)

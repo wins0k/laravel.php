@@ -21,10 +21,11 @@ class CartController extends Controller
 
         $productsInCart = false;
         $productsInCart = Cart::GetProducts();
+        $products = false;
 
         if ($productsInCart) {
             $productsIds = array_keys($productsInCart);
-            $products = Product::GetProductsByIds($productsIds);
+            $products = Product::GetProductsByIds($productsIds, 'cart');
             $data['total_price'] = Cart::GetTotalPrice($products);
         }
 

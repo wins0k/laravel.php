@@ -4,20 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
-use App\Models\Slider;
 use App\Models\Product;
 
-class MainController extends Controller
+class ProductController extends Controller
 {
-    public function IndexPage()
+    public function ProductPage($id)
     {
         $data['main_menu'] = CategoryController::MainCatMenu();
-        $data['slider'] = Slider::View();
-        $data['latest'] = Product::LatestProducts(6);
         $data['best_salling'] = Product::BestSellingProducts(8);
         $data['cart_count'] = Cart::CountItems();
 
-        return view('site.index.index', compact('data'));
-    }
+        $product = Product::GetProductById($id);
+        if ($product) {
+            $data['product'] = $product;
+        }
 
+        return view('site.product.index', compact('data'));
+    }
 }

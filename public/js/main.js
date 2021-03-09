@@ -230,15 +230,48 @@ $(window).on('load', function() {
 
 	$('.product-pic-zoom').zoom();
 
-
-	$('.add-card').click(function(e) {
+	$('.add-product-to').click(function(e) {
         e.preventDefault();
-	    var id = $(this).attr('data-id');
-	    $.get('/cart/add/' + id, {}, function (data) {
+	    var url = $(this).attr('href');
+	    $.get(url, {}, function (data) {
 	        $('.shopping-card span').html(data);
+
+	        var rand = str_rand();
+
+	        $('.alerts').append('<div id="'+rand+'" class="alert alert-success alert-dismissible" role="alert">\n' +
+                '        <strong>Добавлено</strong> \n' +
+                '        <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
+                '            <span aria-hidden="true">&times;</span>\n' +
+                '        </button>\n' +
+                '    </div>');
+            window.setTimeout(function(){
+                $('#'+rand).alert('close');
+            }, 1000);
+
 	    });
 	    return false;
 	});
 
+    $('.clear-wish').click(function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.get(url, {}, function (data) {
+            location.reload();
+        });
+        return false;
+    });
+
 
 })(jQuery);
+
+function str_rand() {
+    var result       = '';
+    var words        = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+    var max_position = words.length - 1;
+    var i = 0;
+    for( i = 0; i < 5; i++ ) {
+        var position = Math.floor ( Math.random() * max_position );
+        result = result + words.substring(position, position + 1);
+    }
+    return result;
+}

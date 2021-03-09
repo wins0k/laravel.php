@@ -61,20 +61,24 @@
             </div>
             <div class="product-slider owl-carousel">
                 @foreach($data['latest'] as $item)
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            @if ($item->is_new)<div class="tag-new">Новинка</div>@endif
-                            <img src="{{ $item->preview }}" alt="{{ $item->title }}">
-                            <div class="pi-links">
-                                <a href="{{ route('cart.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="add-card"><i class="flaticon-bag"></i><span>В корзину</span></a>
-                                <a href="{{ route('wish.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <a href="{{ route('product', ['id' => $item->id]) }}">
+                                    @if ($item->is_new)<div class="tag-new">Новинка</div>@endif
+                                    <img src="{{ $item->preview }}" alt="{{ $item->title }}">
+                                </a>
+                                <div class="pi-links">
+                                    <a href="{{ route('cart.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="add-card add-product-to"><i class="flaticon-bag"></i><span>В корзину</span></a>
+                                    <a href="{{ route('wish.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="wishlist-btn add-product-to"><i class="flaticon-heart"></i></a>
+                                </div>
+                            </div>
+                            <div class="pi-text">
+                                <a href="{{ route('product', ['id' => $item->id]) }}">
+                                    <h6>{{ $item->price }} руб.</h6>
+                                    <p>{{ $item->title }}</p>
+                                </a>
                             </div>
                         </div>
-                        <div class="pi-text">
-                            <h6>{{ $item->price }} руб.</h6>
-                            <p>{{ $item->title }}</p>
-                        </div>
-                    </div>
                 @endforeach
             </div>
         </div>
@@ -89,16 +93,20 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="product-item">
                             <div class="pi-pic">
-                                @if ($item->is_new)<div class="tag-new">Новинка</div>@endif
-                                <img src="{{ $item->preview }}" alt="{{ $item->title }}">
+                                <a href="{{ route('product', ['id' => $item->id]) }}">
+                                    @if ($item->is_new)<div class="tag-new">Новинка</div>@endif
+                                    <img src="{{ $item->preview }}" alt="{{ $item->title }}">
+                                </a>
                                 <div class="pi-links">
-                                    <a href="{{ route('cart.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="add-card"><i class="flaticon-bag"></i><span>В корзину</span></a>
-                                    <a href="{{ route('wish.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                                    <a href="{{ route('cart.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="add-card add-product-to"><i class="flaticon-bag"></i><span>В корзину</span></a>
+                                    <a href="{{ route('wish.add', ['id' => $item->id]) }}" data-id="{{ $item->id }}" class="wishlist-btn add-product-to"><i class="flaticon-heart"></i></a>
                                 </div>
                             </div>
                             <div class="pi-text">
-                                <h6>{{ $item->price }} руб.</h6>
-                                <p>{{ $item->title }}</p>
+                                <a href="{{ route('product', ['id' => $item->id]) }}">
+                                    <h6>{{ $item->price }} руб.</h6>
+                                    <p>{{ $item->title }}</p>
+                                </a>
                             </div>
                         </div>
                     </div>
